@@ -18,7 +18,7 @@ var commentRoutes 	 = require("./routes/comments"),
 	indexRoutes 		 = require("./routes/index")
 	
 // seedDB();
-mongoose.connect('mongodb://localhost:27017/YelpCamp', {
+mongoose.connect("mongodb+srv://daniel:shirrenwang@cluster0.4x4ur.mongodb.net/yelp_camp?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
