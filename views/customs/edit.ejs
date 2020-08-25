@@ -1,0 +1,36 @@
+<%- include("../partials/header") %>
+<div class="container hatneeded">
+	<div class="row">
+		<div class="col-md-12">
+			<h1 style="text-align:center">
+		Edit <%=custom.name%>
+			</h1>
+		</div>
+		<div style="width: 30%; margin:25px auto;">
+			<form action="/customs/<%=custom._id%>/?_method=PUT" method="POST">
+				<label>Name</label>
+				<div class="form-group">
+					<input class="form-control" type = "text" name="custom[name]" value="<%=custom.name%>">
+				</div>
+				<label>Image URL</label>
+				<div class="form-group">
+					<input class="form-control" type = "text" name="custom[image]" value="<%=custom.image%>">
+				</div>
+				<label>Description</label>
+				<div class="form-group">
+					<input class="form-control" type = "text" name="custom[description]" value="<%=custom.description%>">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-lg btn-block btn-primary">
+					Submit!
+				</button>
+				</div>
+		</form>	
+				<a href="/customs">Go Back</a>
+		</div>
+		
+	</div>	
+</div>
+
+
+<%- include("../partials/footer") %>

@@ -1,0 +1,54 @@
+<%- include("../partials/header") %>
+
+<div class="jumbotron jumbotron-fluid px-0 mx-0" style="width:100%">
+	<div class="container jumbotext" style="text-align:center">
+		 <!-- <div class="container-fluid">
+     <% if(error && error.length > 0) { %>
+       <div class="alert alert-danger"><p><%=error %></p></div>
+     <% } %>
+     
+     <% if(success && success.length > 0) { %>
+       <div class="alert alert-success"><p><%= success %></p></div>
+     <% } %>
+  </div> -->
+		<div class="row">
+			<div class="jumbotext col col-md-12 col-lg-6 d-flex flex-column align-items-center">
+				<h1 class="display-4">Welcome to BKrafts!</h1>
+				  <p class="lead">View our hand-crafted designs, all made to order.</p>
+				  <hr class="my-4">
+				  <div class="container" id="order">
+					  <p>Have something in mind? Want a custom designed piece? </p>
+				  <% if(currentUser && currentUser.isAdmin) { %>
+						<p>	<a class="btn btn-primary btn-lg" href="/customs/new">Add New Custom</a> </p>	
+					<% }%>
+				  <p>	<a class="btn btn-success btn-lg" href="https://d4nielhu14.typeform.com/to/Ya6tcIGp">Order Now</a> </p>
+				  </div>
+			</div>
+			<div class="col col-lg-6">
+			<img id="jumboimg" src="images/BKrafts.png" class="animated bounce slower" alt="Transparent MDB Logo" id="animated-img1">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container" id="gallery">	
+	
+	<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+		<% customs.forEach(function(custom) {%>
+		<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+			  <div class="card">
+			  <img src="<%=custom.image%>" class="card-img-top" alt="<%=custom.name%>">
+			  <div class="card-body">
+				<h5 class="card-title"><%=custom.name%></h5>
+				<a href="/customs/<%=custom._id%>" class="btn btn-success">More Info</a>
+  </div>
+</div>
+		</div>		
+		<%})%>
+	</div>
+
+
+	
+</div>
+	
+<%- include("../partials/footer") %>

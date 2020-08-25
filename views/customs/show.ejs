@@ -1,0 +1,64 @@
+<%- include("../partials/header") %>
+<div class="hatneeded container-fluid" style="padding-top: 20px">
+	<div class="hatneeded row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			
+			<!-- card -->
+			 <div class="card">
+			  <img src="<%=custom.image%>" class="card-img-top" alt="<%=custom.name%>">
+			  <div class="card-body">
+				<h5 class="card-title"><%=custom.name%></h5>
+				<pre>
+					<%=custom.description%>
+				  </pre>
+				 <p>
+						<em>Submitted By <a href="/users/<%=custom.author.id%>"><%=custom.author.username%></a>, <%= moment(custom.createdAt).fromNow() %></em>
+					</p>
+				  <a class="float-right btn btn-success" href="/customs/<%=custom._id%>/comments/new">Add New Comment</a>
+					<% if((currentUser && custom.author.id.equals(currentUser._id))){ %>
+						<% if(currentUser.isAdmin) { %>
+					<a class="btn btn-warning" href="/customs/<%=custom._id%>/edit">Edit</a>
+					<form class="delete-form" action="/customs/<%=custom._id%>?_method=DELETE" method="POST">
+						<button class="btn btn-danger">
+							Delete
+						</button>
+					</form>			  
+						<%}%>
+					<%}%>
+			  </div>
+			</div>
+			
+			<!-- whitespace -->
+			<div style="padding-top:100px">
+			</div>
+			
+			<!-- comments -->
+			<div class="card">
+				<div class="card-body">
+					<h5 class="card-title"><strong>Comments</strong></h5>
+					<% custom.comments.forEach(function(comment){%>
+					<div class="row">
+						<div class="col-md-12">
+						<strong><a href="/users/<%=comment.author.id%>"><%=comment.author.username%></a></strong>
+						<span class="float-right"><%= moment(custom.createdAt).fromNow() %></span>
+						<pre><%=comment.text%></pre>
+						<% if((currentUser && comment.author.id.equals(currentUser._id))) {%>
+						<%if(currentUser.isAdmin) {%>
+						<a class="btn btn-xs btn-warning" href="/customs/<%=custom._id%>/comments/<%=comment._id%>/edit">Edit</a>
+						<form class="delete-form" action="/customs/<%=custom._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+							<input type="submit" class="btn btn-xs btn-danger" value="Delete">
+						</form>
+						<%}%>
+					</div>
+				</div>	
+				<%}%>
+					<%})%>
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>
+
+
+<%- include("../partials/footer") %>

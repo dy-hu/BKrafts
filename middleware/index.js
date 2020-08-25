@@ -1,16 +1,16 @@
 //all the middleware goes here
 var middlewareObj = {};
-var Campground = require("../models/campground");
+var Custom = require("../models/customs");
 var Comment = require("../models/comment");
 
-middlewareObj.checkCampgroundOwnership = function(req, res, next) {
+middlewareObj.checkCustomOwnership = function(req, res, next) {
 	if(req.isAuthenticated()) {
-		Campground.findById(req.params.id, function(err, foundCampground) {
+		Custom.findById(req.params.id, function(err, foundCustom) {
 			if(err){
-				req.flash("error", "Campground not found");
+				req.flash("error", "Custom not found");
 				res.redirect("back");
 			} else {
-				if(foundCampground.author.id.equals(req.user._id)) {
+				if(foundCustom.author.id.equals(req.user._id) || req.user.isAdmin) {
 					next();
 				} else {
 					req.flash("error", "You don't have permission to do that!");
@@ -31,7 +31,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next) {
 				req.flash("error", "Comment not found");
 				res.redirect("back");
 			} else {
-				if(foundComment.author.id.equals(req.user._id)) {
+				if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin) {
 					next();
 				} else {
 					req.flash("error", "You don't have permission to do that!");

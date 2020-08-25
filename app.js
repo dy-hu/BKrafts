@@ -5,7 +5,7 @@ var express 		= require("express"),
 	passport 		= require("passport"),
 	LocalStrategy 	= require("passport-local"),
 	methodOverride  = require("method-override"),
-	Campground 		= require("./models/campground"),
+	Custom 			= require("./models/customs"),
 	seedDB 			= require("./seeds"),
 	User 			= require("./models/user"),
 	Comment 		= require("./models/comment")
@@ -14,11 +14,11 @@ const mongoose = require("mongoose");
 
 //requiring routes
 var commentRoutes 	 = require("./routes/comments"),
-	campgroundRoutes = require("./routes/campgrounds"),
+	customRoutes = require("./routes/customs"),
 	indexRoutes 		 = require("./routes/index")
 	
 // seedDB();
-mongoose.connect("mongodb+srv://daniel:shirrenwang@cluster0.4x4ur.mongodb.net/yelp_camp?retryWrites=true&w=majority", {
+mongoose.connect("mongodb://localhost:27017/BKrafts", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -53,7 +53,11 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 
 app.use("/", indexRoutes);
-app.use("/campgrounds/:id/comments", commentRoutes);
-app.use("/campgrounds", campgroundRoutes);
+app.use("/customs/:id/comments", commentRoutes);
+app.use("/customs", customRoutes);
 
-app.listen(process.env.PORT || 5000);
+app.locals.moment = require("moment");
+
+app.listen(3000, function() {
+	console.log("Server listening on port 3000");
+});

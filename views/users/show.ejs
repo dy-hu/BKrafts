@@ -1,0 +1,19 @@
+<%- include("../partials/header") %>
+<div class="hatneeded container-fluid" style="padding-top: 20px">
+	<div class="hatneeded row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			
+			<!-- card -->
+			 <div class="card">
+			  <img src="<%=user.avatar%>" class="card-img-top" alt="User Avatar">
+			  <div class="card-body">
+				<h5 class="card-title"><%= user.firstName + " " + user.lastName %></h5>
+				  <div class="caption"><a href="mailto:<%= user.email %>"><%= user.email %></a></div>
+			  </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include("../partials/footer") %>

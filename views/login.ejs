@@ -1,13 +1,34 @@
 <%- include("partials/header") %>
 
 
-<h1>
-	Login
-</h1>
-
-<form action="/login" method="POST">
-	<input type="text" name="username" placeholder="username">
-	<input type="password" name="password" placeholder="password">
-	<input type="submit" value="Login">
-</form>
+<div class="container hatneeded">
+  <div class="row">
+	  	<div class="col-md-12">
+		<h1 style="text-align: center">Login</h1>
+	</div>
+	</div>
+    <div style="width: 30%; margin: 25px auto;">
+        <form  action="/login" method="post">
+			<label>Username</label>
+            <div class="form-group">
+                <input class="form-control" type="text" name="username" placeholder="John Smith" required>
+            </div>
+			<label>Password</label>
+            <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="JohnSmith123" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-lg btn-dark btn-block">Login</button>
+            </div>
+        </form>
+        <div class="row">
+			<div class="col-lg-6">
+				<a href="/customs">Go Back</a>
+			</div>
+			<div class="col-lg-6" style="text-align:right">
+				<a href="/forgot">Forgot My Password</a>
+			</div>
+		</div>
+    </div>
+</div>
 <%- include("partials/footer") %>
