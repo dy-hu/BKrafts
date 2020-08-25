@@ -18,7 +18,7 @@ var commentRoutes 	 = require("./routes/comments"),
 	indexRoutes 		 = require("./routes/index")
 	
 // seedDB();
-mongoose.connect("mongodb://localhost:27017/BKrafts", {
+mongoose.connect("mongodb+srv://bkrish:bkrish@bkrafts.e5lxi.mongodb.net/bkrafts?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -58,6 +58,4 @@ app.use("/customs", customRoutes);
 
 app.locals.moment = require("moment");
 
-app.listen(8080, function() {
-	console.log("Server listening on port 8080");
-});
+app.listen(process.env.PORT || 5000);
