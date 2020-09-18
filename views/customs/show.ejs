@@ -44,7 +44,7 @@
 						<span class="float-right"><%= moment(custom.createdAt).fromNow() %></span>
 						<pre><%=comment.text%></pre>
 						<% if(currentUser) {%>
-						<%if(currentUser.isAdmin || comment.author.id.equals(currentUser._id))) {%>
+						<%if(currentUser.isAdmin || comment.author.id.equals(currentUser._id)) {%>
 						<a class="btn btn-xs btn-warning" href="/customs/<%=custom._id%>/comments/<%=comment._id%>/edit">Edit</a>
 						<form class="delete-form" action="/customs/<%=custom._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
 							<input type="submit" class="btn btn-xs btn-danger" value="Delete">
