@@ -43,7 +43,7 @@
 						<strong><a href="/users/<%=comment.author.id%>"><%=comment.author.username%></a></strong>
 						<span class="float-right"><%= moment(custom.createdAt).fromNow() %></span>
 						<pre><%=comment.text%></pre>
-						<% if((currentUser && comment.author.id.equals(currentUser._id))) {%>
+						<% if((currentUser && comment.author.id.equals(currentUser._id)) || currentUser.isAdmin) {%>
 						<%if(currentUser.isAdmin) {%>
 						<a class="btn btn-xs btn-warning" href="/customs/<%=custom._id%>/comments/<%=comment._id%>/edit">Edit</a>
 						<form class="delete-form" action="/customs/<%=custom._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
